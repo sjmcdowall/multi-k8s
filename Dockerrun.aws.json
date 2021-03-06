@@ -5,12 +5,14 @@
       "name": "client",
       "image": "sjmcdowall/multi-client",
       "hostname": "client",
+      "memory": 128,
       "essential": false
     },
     {
       "name": "nginx",
       "image": "sjmcdowall/multi-nginx",
       "hostname": "nginx",
+      "memory": 128,
       "essential": true,
       "portMappings": [
         {
@@ -27,12 +29,14 @@
       "name": "worker",
       "image": "sjmcdowall/multi-worker",
       "hostname": "worker",
+      "memory": 128,
       "essential": false
     },
     {
       "name": "server",
       "image": "sjmcdowall/multi-server",
       "hostname": "api",
+      "memory": 128,
       "essential": false
     }
   ]
