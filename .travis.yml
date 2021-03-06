@@ -19,7 +19,7 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   # Step 2 now we can do the pushes
-  - docker push sjmcdsowall/multi-client
+  - docker push sjmcdowall/multi-client
   - docker push sjmcdowall/multi-nginx
   - docker push sjmcdowall/multi-server
   - docker push sjmcdowall/multi-worker
