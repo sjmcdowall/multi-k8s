@@ -23,3 +23,16 @@ after_success:
   - docker push sjmcdowall/multi-nginx
   - docker push sjmcdowall/multi-server
   - docker push sjmcdowall/multi-worker
+
+# Now deploy to AWS EBS
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-465201686747'
+  bucket_path: 'multi-docker'
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: master
