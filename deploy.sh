@@ -17,7 +17,7 @@ docker push sjmcdowall/multi-worker:$SHA
 kubectl apply -f k8s
 
 # Refresh the deployment to use the image
-kubectl set image deployment/multi-client-deployment client=sjmcdowall/multi-client:$SHA
-kubectl set image deployment/multi-server-deployment server=sjmcdowall/multi-server:$SHA
-kubectl set image deployment/multi-worker-deployment worker=sjmcdowall/multi-worker:$SHA
+kubectl set image deployment/client-deployment client=sjmcdowall/multi-client:$SHA
+kubectl set image deployment/server-deployment server=sjmcdowall/multi-server:$SHA
+kubectl set image deployment/worker-deployment worker=sjmcdowall/multi-worker:$SHA
 
