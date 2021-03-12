@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: foodtruckchow-com-tls
+spec:
+  secretName: foodtruckchow-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: foodtruckchow.com
+  dnsNames:
+    - foodtruckcom.com
+    - www.foodtruckcom.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - foodtruckchow.com
+          - www.foodtruckcom.com
