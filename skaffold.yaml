@@ -1,0 +1,47 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: skaffold-config
+
+build:
+  local:
+    push: false
+
+  artifacts:
+    - image: sjmcdowall/multi-client
+      context: client
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: '.'
+          - src: '**/*.css'
+            dest: '.'
+          - src: '**/*.html'
+            dest: '.'
+    - image: sjmcdowall/multi-server
+      context: server
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: '.'
+    - image: sjmcdowall/multi-worker
+      context: worker
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: '.'
+
+# Can add all the k8s files if we want skaffold to manage everything
+# but maybe things like redis and postgres isn't the best idea..
+deploy:
+  kubectl:
+    manifests:
+      - k8s/client-deployment.yaml
+      - k8s/server-deployment.yaml
+      - k8s/worker-deployment.yaml
